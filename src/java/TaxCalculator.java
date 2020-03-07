@@ -12,6 +12,19 @@ public class TaxCalculator extends HttpServlet {
         //reads the request
         String s1=request.getParameter("t1");//income
         String s2=request.getParameter("t2");//age
+        String s3=request.getParameter("t3");
+        String s4=request.getParameter("t4");//secrete code
+        String s5=request.getParameter("t5");
+        String s[]=request.getParameterValues("t6");
+        String s7=request.getParameter("t7");
+        String res="";
+        if(s!=null){
+        for(String tmp:s){
+            res=res+tmp+",";
+        }
+        }else{
+            res="No Asset Is Declared By You";
+        }
         //process the request
         int tax=0, rebate=0, net=0;
         int income=Integer.parseInt(s1);
@@ -32,7 +45,15 @@ public class TaxCalculator extends HttpServlet {
         out.println("<html>");
         out.println("<body>");
         out.println("<h3>Tax Details</h3>");
-        
+        out.println("<h4>Your PIN : "+s3+"</h4>");
+        out.println("<h4>Hidden Code : "+s4+"</h4>");
+        out.println("<h4>Your City : "+s5+"</h4>");
+        out.println("<h4>Your Assets  : "+res+"</h4>");
+        String nriStatus="NRI";
+        if(s7==null){
+            nriStatus="Not-NRI";
+        }
+        out.println("<h4>NRI Status  : "+nriStatus+"</h4>");
         out.println("<table border=\"2\">");
         
         out.println("<tr>");
